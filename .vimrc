@@ -14,6 +14,7 @@ let g:ycm_server_use_vim_stdout=0
 let g:ycm_server_keep_logfiles=1
 let g:ycm_server_python_interpreter='/usr/bin/python2'
 
+Plugin 'shougo/neoyank.vim'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/unite.vim'
 Plugin 'airblade/vim-gitgutter'
@@ -41,10 +42,11 @@ set encoding=utf-8
 "let g:Powerline_symbols_override = { 'BRANCH': "\Ue0a0", 'LINE': "\Ue0a1", 'RO': "\Ue0a2" }
 
 " vim-unite settings
-nnoremap <C-P> :Unite -buffer-name=files -start-insert file_rec/async:!<CR>
+nnoremap <C-P> :Unite -buffer-name=files file_rec/async:!<CR>
 nnoremap <space>/ :Unite -no-empty -no-resize grep<CR>
 nnoremap <space>s :Unite -quick-match buffer<CR>
-
+let g:unite_source_history_yank_enable = 1
+nnoremap <space>y :Unite history/yank<CR>
 autocmd FileType unite call s:unite_settings()
 function! s:unite_settings()
   imap <buffer> <C-j> <Plug>(unite_select_next_line)

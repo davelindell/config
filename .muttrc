@@ -2,6 +2,7 @@ set my_name = "David Lindell"
 set from = "lindell@stanford.edu"
 source ~/.mutt/mutt-colors-solarized-dark-256.muttrc
 source ~/.mutt/gpg.rc
+source ~/.mutt/sidebar.rc
 # ~/.muttrc
 source "gpg -dq /home/lindell/.mutt/pass.gpg |"
 set smtp_url="smtps://$USER@smtp.stanford.edu/"
@@ -12,6 +13,15 @@ set record="+Sent Items"
 set timeout=10
 set header_cache="~/.mutt/header_cache"
 set message_cachedir = "~/.mutt/message_cachedir"
+set imap_check_subscribed
+mailboxes "imaps://$USER%40stanford.edu@outlook.office365.com/INBOX" \
+          "imaps://$USER%40stanford.edu@outlook.office365.com/Sent Items" \
+          "imaps://$USER%40stanford.edu@outlook.office365.com/Drafts" \
+          "imaps://$USER%40stanford.edu@outlook.office365.com/Deleted Items" \
+          "imaps://$USER%40stanford.edu@outlook.office365.com/ee-doctorate" \
+          "imaps://$USER%40stanford.edu@outlook.office365.com/ee-students-forum" \
+          "imaps://$USER%40stanford.edu@outlook.office365.com/ev-hoskins" \
+          "imaps://$USER%40stanford.edu@outlook.office365.com/Junk Email" \
 
 # Text view first
 set pager_stop="yes"
@@ -23,12 +33,14 @@ set reverse_realname=yes
 
 # Text editor
 #set editor='vim + -c "set textwidth=72" -c "set wrap" -c "set nocp" -c "?^$"'
-set editor="vim"
+#set editor="vim"
+set editor="vim +':set textwidth=0' +':set wrapmargin=0' +':set wrap'"
 
 # Adress book handling
 set sort_alias=alias
 set reverse_alias=yes
 set alias_file="~/.mutt/aliases"
+source ~/.mutt/aliases
 
 # Thread ordering
 set sort = 'threads'
@@ -38,6 +50,9 @@ unset collapse_unread
 set index_format=" %?M?   ↳&%4C?   %Z      %D     %-15.15n    %s"
 
 ## Key bindings
+set my_sent = "Sent Items"
+set my_drafts = 'Drafts'
+set my_trash = "Deleted Items"
 
 # Mailboxes
 bind    index   G  imap-fetch-mail
