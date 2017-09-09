@@ -13,12 +13,17 @@ let g:ycm_confirm_extra_conf=0
 let g:ycm_server_use_vim_stdout=0
 let g:ycm_server_keep_logfiles=1
 let g:ycm_server_python_interpreter='/usr/bin/python2'
+let g:ycm_use_ultisnips_completer = 1
 
+Plugin 'godlygeek/csapprox'
 Plugin 'shougo/neoyank.vim'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/unite.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'nightsense/vim-crunchbang'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
@@ -28,12 +33,16 @@ Plugin 'lervag/vimtex'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-" powerline
-set rtp+=/usr/lib/python2.7/site-packages/powerline/bindings/vim/
-" Always show statusline
-set laststatus=2
 " Use 256 colours (Use this setting only if your terminal supports 256 colours)
 set t_Co=256
+let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : '', 'sp' : '' }
+
+" powerline
+set rtp+=/usr/lib/python2.7/site-packages/powerline/bindings/vim/
+
+" Always show statusline
+set laststatus=2
+
 let g:Powerline_symbols = 'fancy'
 set noshowmode
 set termencoding=utf-8
@@ -73,15 +82,33 @@ call unite#custom#profile('default', 'context', {
 \   'winheight': 15
 \ })
 
+" ultisnips and snippets
+let g:UltiSnipsSnippetsDir="/home/lindell/.vim/bundle/vim-snippets/UltiSnips"
+let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+let g:UltiSnipsExpandTrigger="<C-j>"
+let g:UltiSnipsJumpForwardTrigger="<C-j>"
+let g:UltiSnipsJumpBackwardTrigger="<C-k>"
+let g:UltiSnipsListSnips="<c-h>"
+let g:UltiSnipsEditSplit="vertical"
+
 " vim-gitgutter
 set updatetime=250
 
 " vim-colors-solarized
 syntax enable
+syntax on
 set background=dark
 let g:solarized_termcolors=256
 let g:solarized_termtrans=1
+"colorscheme crunchbang 
 colorscheme solarized
+
+"highlight Normal ctermbg=none
+"highlight NonText ctermbg=none 
+"highlight VimCommand ctermfg=5 cterm=bold
+"highlight type ctermfg=2
+"highlight PreProc ctermfg=35
+"highlight LineNr ctermbg=8
 
 " Syntastic settings
 "set statusline+=%#warningmsg#
@@ -94,6 +121,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_matlab_checkers = ['mlint']
 let g:syntastic_loc_list_height=5
+nnoremap <silent> <C-u> :SyntasticToggleMode <CR>
 " NERDTree settings
 
 
@@ -119,8 +147,6 @@ set foldlevel=99
 
 " Enable folding with the spacebar
 nnoremap <space> za
-
-filetype indent plugin on
 
 " Use Function keys to switch between file buffers
 :map <F6> :n<CR>
