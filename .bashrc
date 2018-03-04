@@ -11,6 +11,7 @@ export TERM="xterm-256color"
 export VISUAL="vim"
 export GDK_BACKEND=x11
 export EDITOR=vim
+export PATH=$PATH:/opt/anaconda/bin
 
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/lib:/opt/cuda/lib64:/opt/cuda/extras/CUPTI/lib64:/home/lindell/local/MATLAB/MATLAB_Runtime/v91/runtime/glnxa64:/home/lindell/local/MATLAB/MATLAB_Runtime/v91/bin/glnxa64:/home/lindell/local/MATLAB/MATLAB_Runtime/v91/sys/os/glnxa64:"
 export CUDA_HOME=/opt/cuda
@@ -28,9 +29,6 @@ fi
 #dbus-update-activation-environment --all
 
 
-
-
-#:/opt/anaconda/bin:$PATH
 
 
 #PYTHONPATH=$PYTHONPATH:/usr/lib/python2.7/site-packages:/usr/lib/python2.7/site_packages/gnuradio/blocks

@@ -1,8 +1,9 @@
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
 
+
+let g:jedi#show_call_signatures = "1"
 let maplocalleader = "//"
 let g:vimtex_view_general_viewer = 'okular'
 let g:vimtex_view_general_options = '--unique file:@pdf/#src:@line@tex'
@@ -15,6 +16,8 @@ let g:ycm_server_keep_logfiles=1
 let g:ycm_server_python_interpreter='/usr/bin/python2'
 let g:ycm_use_ultisnips_completer = 1
 
+call vundle#begin()
+Plugin 'flazz/vim-colorschemes'
 Plugin 'godlygeek/csapprox'
 Plugin 'shougo/neoyank.vim'
 Plugin 'Shougo/vimproc.vim'
@@ -27,11 +30,16 @@ Plugin 'nightsense/vim-crunchbang'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
-Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'lervag/vimtex'
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'davidhalter/jedi-vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+" spelling
+set spelllang=en
+"set spellfile=/home/lindell/.vim/words.add
 
 " Use 256 colours (Use this setting only if your terminal supports 256 colours)
 set t_Co=256
@@ -98,10 +106,11 @@ set updatetime=250
 syntax enable
 syntax on
 set background=dark
-let g:solarized_termcolors=256
-let g:solarized_termtrans=1
+"let g:solarized_termcolors=256
+"let g:solarized_termtrans=1
 "colorscheme crunchbang 
-colorscheme solarized
+"colorscheme solarized
+colorscheme molokai
 
 "highlight Normal ctermbg=none
 "highlight NonText ctermbg=none 
@@ -149,10 +158,10 @@ set foldlevel=99
 nnoremap <space> za
 
 " Use Function keys to switch between file buffers
-:map <F6> :n<CR>
-:map <F5> :prev<CR>
-:map <F4> :e<CR>
-:map <F8> :n<CR>G
+":map <F6> :n<CR>
+":map <F5> :prev<CR>
+":map <F4> :e<CR>
+":map <F8> :n<CR>G
 
 "Always show current position
 set ruler
