@@ -1,5 +1,6 @@
 set my_name = "David Lindell"
 set from = "lindell@stanford.edu"
+set new_mail_command="notify-send 'New Email' '%n new messages, %u unread.' &"
 source ~/.mutt/mutt-colors-solarized-dark-256.muttrc
 source ~/.mutt/gpg.rc
 source ~/.mutt/sidebar.rc
@@ -58,6 +59,7 @@ set my_drafts = 'Drafts'
 set my_trash = "Deleted Items"
 
 # Mailboxes
+bind index g noop
 bind    index   G  imap-fetch-mail
 macro   index   gi "<change-folder>=INBOX<enter>"       "Go to Inbox"
 macro   index   gs "<change-folder>=$my_sent<enter>"    "Go to Sent"

@@ -35,7 +35,7 @@ selectp -t 1
 ## create a new window called scratch
 new-window -t $session:1 
 selectp -t 1
-send-keys "mutt" C-m
+send-keys "neomutt" C-m
 
 # return to main vim window
 select-window -t $session:0
