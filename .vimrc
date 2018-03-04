@@ -2,40 +2,29 @@ set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 
-
-let g:jedi#show_call_signatures = "1"
-let maplocalleader = "//"
-let g:vimtex_view_general_viewer = 'okular'
-let g:vimtex_view_general_options = '--unique file:@pdf/#src:@line@tex'
-let g:vimtex_view_general_options_latexmk = '--unique'
-let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
-set completeopt=longest,menu
-let g:ycm_confirm_extra_conf=0
-let g:ycm_server_use_vim_stdout=0
-let g:ycm_server_keep_logfiles=1
-let g:ycm_server_python_interpreter='/usr/bin/python2'
-let g:ycm_use_ultisnips_completer = 1
-
 call vundle#begin()
+Plugin 'easymotion/vim-easymotion'
 Plugin 'flazz/vim-colorschemes'
-Plugin 'godlygeek/csapprox'
-Plugin 'shougo/neoyank.vim'
 Plugin 'Shougo/vimproc.vim'
+Plugin 'Shougo/neoyank.vim'
 Plugin 'Shougo/unite.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-Plugin 'nightsense/vim-crunchbang'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'lervag/vimtex'
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'davidhalter/jedi-vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+" indent guides
+let g:indent_guides_guide_size = 1
+let g:indent_guides_color_change_percent = 3
+let g:indent_guides_enable_on_vim_startup = 1
 
 " spelling
 set spelllang=en
@@ -43,20 +32,26 @@ set spelllang=en
 
 " Use 256 colours (Use this setting only if your terminal supports 256 colours)
 set t_Co=256
-let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : '', 'sp' : '' }
 
 " powerline
 set rtp+=/usr/lib/python2.7/site-packages/powerline/bindings/vim/
-
-" Always show statusline
 set laststatus=2
-
 let g:Powerline_symbols = 'fancy'
 set noshowmode
 set termencoding=utf-8
 set encoding=utf-8
-"let g:Powerline_dividers_override = ["\Ue0b0", "\Ue0b1", "\Ue0b2", "\Ue0b3"]
-"let g:Powerline_symbols_override = { 'BRANCH': "\Ue0a0", 'LINE': "\Ue0a1", 'RO': "\Ue0a2" }
+
+" jedi-vim
+let g:jedi#show_call_signatures = "2"
+
+" ycm
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+set completeopt=longest,menu
+let g:ycm_confirm_extra_conf=0
+let g:ycm_server_use_vim_stdout=0
+let g:ycm_server_keep_logfiles=1
+let g:ycm_server_python_interpreter='/usr/bin/python3'
+let g:ycm_use_ultisnips_completer = 1
 
 " vim-unite settings
 nnoremap <C-P> :Unite -buffer-name=files file_rec/async:!<CR>
@@ -79,8 +74,8 @@ function! s:unite_settings()
   imap <silent><buffer><expr> <C-h> unite#do_action('splitswitch')
   imap <silent><buffer><expr> <C-v> unite#do_action('vsplitswitch')
 
-  map <buffer> <C-p> <Plug>(unite_toggle_auto_preview)
-
+  "map <buffer> <C-p> <Plug>(unite_toggle_auto_preview)
+  "noremap <C-p> :Unite file-rec/async<cr>
   nnoremap <ESC> :UniteClose<cr>
 endfunction
 
@@ -106,24 +101,9 @@ set updatetime=250
 syntax enable
 syntax on
 set background=dark
-"let g:solarized_termcolors=256
-"let g:solarized_termtrans=1
-"colorscheme crunchbang 
-"colorscheme solarized
 colorscheme molokai
 
-"highlight Normal ctermbg=none
-"highlight NonText ctermbg=none 
-"highlight VimCommand ctermfg=5 cterm=bold
-"highlight type ctermfg=2
-"highlight PreProc ctermfg=35
-"highlight LineNr ctermbg=8
-
-" Syntastic settings
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-
+" syntastic settings
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
@@ -131,8 +111,11 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_matlab_checkers = ['mlint']
 let g:syntastic_loc_list_height=5
 nnoremap <silent> <C-u> :SyntasticToggleMode <CR>
-" NERDTree settings
 
+" local leader
+"let mapleader = ","
+let maplocalleader = "\\"
+let mapleader = '\'
 
 "window settings
 set winheight=30
@@ -145,10 +128,6 @@ nnoremap <silent> > :exe "vertical resize " . (winwidth(0) * 5/4)<CR>
 nnoremap <silent> < :exe "vertical resize " . (winwidth(0) * 4/5)<CR>
 
 inoremap jk <esc>
-"nnoremap <C-h> <C-w>h
-"nnoremap <C-j> <C-w>j
-"nnoremap <C-k> <C-w>k
-"nnoremap <C-l> <C-w>l
 
 " Enable folding
 set foldmethod=indent
@@ -183,7 +162,7 @@ set showmatch
 set mat=2
 
 " Set utf8 as standard encoding and en_US as the standard language
-"set encoding=utf-8
+set encoding=utf-8
 
 " Use Unix as the standard file type
 set ffs=unix,dos,mac

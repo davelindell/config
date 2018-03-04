@@ -4,7 +4,10 @@ source ~/.mutt/mutt-colors-solarized-dark-256.muttrc
 source ~/.mutt/gpg.rc
 source ~/.mutt/sidebar.rc
 # ~/.muttrc
-source "gpg -dq /home/lindell/.mutt/pass.gpg |"
+#source "gpg -dq /home/lindell/.mutt/pass.gpg |"
+set my_pw1=`gpg --batch -q --decrypt ~/.mutt/pass.gpg`
+set imap_pass=$my_pw1
+set smtp_pass=$my_pw1
 set smtp_url="smtps://$USER@smtp.stanford.edu/"
 set folder="imaps://$USER%40stanford.edu@outlook.office365.com/"
 set spoolfile="+Inbox"

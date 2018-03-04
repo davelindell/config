@@ -1,5 +1,7 @@
 shopt -s expand_aliases
-
+set -o vi
+bind '"jk":vi-movement-mode'
+bind -m vi-insert "\C-l":clear-screen
 alias ll='ls -l --color=auto'
 alias ls='ls --color=auto'
 alias sq='squeue -o "%.8i %.9P %.20j %8u %.2t %.8M %.6D %.4C %R"'
