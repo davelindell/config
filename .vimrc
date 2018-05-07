@@ -18,6 +18,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'davidhalter/jedi-vim'
+Plugin 'lervag/vimtex'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -33,6 +34,30 @@ set spelllang=en
 " Use 256 colours (Use this setting only if your terminal supports 256 colours)
 set t_Co=256
 
+" vimtex
+let g:vimtex_enabled = 1
+let g:vimtex_view_general_viewer = 'okular'
+let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
+let g:vimtex_view_general_options_latexmk = '--unique'
+let g:vimtex_complete_close_braces = 1
+"let g:vimtex_compiler_latexmk = {'callback' : 0}
+if !exists('g:ycm_semantic_triggers')
+let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers.tex = [
+    \ 're!\\[A-Za-z]*cite[A-Za-z]*(\[[^]]*\]){0,2}{[^}]*',
+    \ 're!\\[A-Za-z]*ref({[^}]*|range{([^,{}]*(}{)?))',
+    \ 're!\\hyperref\[[^]]*',
+    \ 're!\\includegraphics\*?(\[[^]]*\]){0,2}{[^}]*',
+    \ 're!\\(include(only)?|input){[^}]*',
+    \ 're!\\\a*(gls|Gls|GLS)(pl)?\a*(\s*\[[^]]*\]){0,2}\s*\{[^}]*',
+    \ 're!\\includepdf(\s*\[[^]]*\])?\s*\{[^}]*',
+    \ 're!\\includestandalone(\s*\[[^]]*\])?\s*\{[^}]*',
+    \ 're!\\usepackage(\s*\[[^]]*\])?\s*\{[^}]*',
+    \ 're!\\documentclass(\s*\[[^]]*\])?\s*\{[^}]*',
+    \ 're!\\[A-Za-z]*',
+    \ ]
+
 " powerline
 set rtp+=/usr/lib/python2.7/site-packages/powerline/bindings/vim/
 set laststatus=2
@@ -42,7 +67,7 @@ set termencoding=utf-8
 set encoding=utf-8
 
 " jedi-vim
-let g:jedi#show_call_signatures = "2"
+ let g:jedi#show_call_signatures = "1"
 
 " ycm
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
@@ -52,13 +77,35 @@ let g:ycm_server_use_vim_stdout=0
 let g:ycm_server_keep_logfiles=1
 let g:ycm_server_python_interpreter='/usr/bin/python3'
 let g:ycm_use_ultisnips_completer = 1
+let g:ycm_python_binary_path = '/usr/bin/python3'
 
 " vim-unite settings
+let g:unite_source_history_yank_enable = 1
+let g:unite_data_directory='~/.vim/.cache/unite'
+let g:unite_source_rec_max_cache_files=50000
+let g:unite_enable_start_insert = 1
+
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
+
+call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
+      \ 'ignore_pattern', join([
+      \ '\.git/',
+      \ '\.png',
+      \ '\.jpg',
+      \ ], '\|'))
+
+call unite#custom#profile('default', 'context', {
+\   'direction': 'botright',
+\   'vertical_preview': 1,
+\   'winheight': 15
+\ })
+
 nnoremap <C-P> :Unite -buffer-name=files file_rec/async:!<CR>
 nnoremap <space>/ :Unite -no-empty -no-resize grep<CR>
 nnoremap <space>s :Unite -quick-match buffer<CR>
-let g:unite_source_history_yank_enable = 1
 nnoremap <space>y :Unite history/yank<CR>
+
 autocmd FileType unite call s:unite_settings()
 function! s:unite_settings()
   imap <buffer> <C-j> <Plug>(unite_select_next_line)
@@ -73,17 +120,10 @@ function! s:unite_settings()
   imap <silent><buffer><expr> <C-t> unite#do_action('tabswitch')
   imap <silent><buffer><expr> <C-h> unite#do_action('splitswitch')
   imap <silent><buffer><expr> <C-v> unite#do_action('vsplitswitch')
-
   "map <buffer> <C-p> <Plug>(unite_toggle_auto_preview)
   "noremap <C-p> :Unite file-rec/async<cr>
   nnoremap <ESC> :UniteClose<cr>
 endfunction
-
-call unite#custom#profile('default', 'context', {
-\   'direction': 'botright',
-\   'vertical_preview': 1,
-\   'winheight': 15
-\ })
 
 " ultisnips and snippets
 let g:UltiSnipsSnippetsDir="/home/lindell/.vim/bundle/vim-snippets/UltiSnips"
@@ -124,8 +164,12 @@ set winminheight=5
 nmap <silent> <C-D> :NERDTreeToggle<CR>
 nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
-nnoremap <silent> > :exe "vertical resize " . (winwidth(0) * 5/4)<CR>
-nnoremap <silent> < :exe "vertical resize " . (winwidth(0) * 4/5)<CR>
+nnoremap <silent> < :exe "vertical resize " . (winwidth(0) * 5/4)<CR>
+nnoremap <silent> > :exe "vertical resize " . (winwidth(0) * 4/5)<CR>
+
+" don't lose selection when shifting sideways
+xnoremap < <gv
+xnoremap > >gv
 
 inoremap jk <esc>
 

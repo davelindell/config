@@ -2,6 +2,8 @@ shopt -s expand_aliases
 set -o vi
 bind '"jk":vi-movement-mode'
 bind -m vi-insert "\C-l":clear-screen
+
+alias vim='vim --servername vim'
 alias ll='ls -l --color=auto'
 alias ls='ls --color=auto'
 alias sq='squeue -o "%.8i %.9P %.20j %8u %.2t %.8M %.6D %.4C %R"'
@@ -9,6 +11,7 @@ alias grep='grep --color=auto'
 
 export DESKIP=10.0.4.113
 export PATH=/home/lindell/local/bin:$PATH
+export PATH=~/.npm-global/bin:$PATH
 export TERM="xterm-256color"
 export VISUAL="vim"
 export GDK_BACKEND=x11

@@ -27,6 +27,10 @@ mailboxes "imaps://$USER%40stanford.edu@outlook.office365.com/INBOX" \
           "imaps://$USER%40stanford.edu@outlook.office365.com/ev-hoskins" \
           "imaps://$USER%40stanford.edu@outlook.office365.com/Junk Email" \
 
+# address completion
+set query_command = "notmuch-address %s"
+set query_format="%4c %t %-70.70a %-70.70n %?e?(%e)?"
+
 # Text view first
 set pager_stop="yes"
 set smart_wrap="yes"
@@ -58,37 +62,89 @@ set my_sent = "Sent Items"
 set my_drafts = 'Drafts'
 set my_trash = "Deleted Items"
 
-# Mailboxes
-bind index g noop
-bind    index   G  imap-fetch-mail
-macro   index   gi "<change-folder>=INBOX<enter>"       "Go to Inbox"
-macro   index   gs "<change-folder>=$my_sent<enter>"    "Go to Sent"
-macro   index   gd "<change-folder>=$my_drafts<enter>"  "Go to Drafts"
-macro   index   gt "<change-folder>=$my_trash<enter>"   "Go to Trash"
-
-# Index
-bind    index   <up>        previous-entry
-bind    index   <down>      next-entry
-bind    index   <delete>    delete-message
-bind    index   n           next-entry
-bind    index   p           previous-entry
-macro   index   Q           ":set quit=yes\nq" "Quit mutt without asking"
-bind    index   C           noop
-bind    index   -           collapse-thread
-bind    index   _           collapse-all
-
-# Pager
-bind    pager   <up>        previous-line
-bind    pager   <down>      next-line
-bind    pager   <left>      previous-entry
-bind    pager   <right>     next-entry
-bind    pager   <delete>    delete-message
-bind    pager   k           previous-line
-bind    pager   j           next-line
-bind    pager   n           next-entry
-bind    pager   p           previous-entry
-bind    pager   w           previous-page
+## Mailboxes
+#bind index g noop
+#bind    index   G  imap-fetch-mail
+#macro   index   gi "<change-folder>=INBOX<enter>"       "Go to Inbox"
+#macro   index   gs "<change-folder>=$my_sent<enter>"    "Go to Sent"
+#macro   index   gd "<change-folder>=$my_drafts<enter>"  "Go to Drafts"
+#macro   index   gt "<change-folder>=$my_trash<enter>"   "Go to Trash"
+#
+## Index
+#bind    index   <up>        previous-entry
+#bind    index   <down>      next-entry
+#bind    index   <delete>    delete-message
+#bind    index   n           next-entry
+#bind    index   p           previous-entry
+#macro   index   Q           ":set quit=yes\nq" "Quit mutt without asking"
+#bind    index   C           noop
+#bind    index   -           collapse-thread
+#bind    index   _           collapse-all
+#
+## Pager
+#bind    pager   <up>        previous-line
+#bind    pager   <down>      next-line
+#bind    pager   <left>      previous-entry
+#bind    pager   <right>     next-entry
+#bind    pager   <delete>    delete-message
+#bind    pager   k           previous-line
+#bind    pager   j           next-line
+#bind    pager   n           next-entry
+#bind    pager   p           previous-entry
+#bind    pager   w           previous-page
 
 # For better looks
 #set markers=no # don't put '+' at the beginning of wrapped lines
 #set pager_index_lines= 5 # how large is the index window?
+#
+
+bind editor                     ^T complete
+bind editor                     <tab> complete-query
+bind editor                     <space> noop
+bind attach                     <space> view-mailcap
+
+#------------------------------------------------------------
+# Vi Key Bindings
+#------------------------------------------------------------
+
+# Moving around
+bind attach g noop
+bind pager g noop
+bind index d noop
+bind index g noop
+
+bind attach,browser,index       gg  first-entry
+bind attach,browser,index       G   last-entry
+bind pager                      gg  top
+bind pager                      G   bottom
+bind pager                      k   previous-line
+bind pager                      j   next-line
+
+# Scrolling
+bind attach,browser,pager,index \CF next-page
+bind attach,browser,pager,index \CB previous-page
+bind attach,browser,pager,index \Cu half-up
+bind attach,browser,pager,index \Cd half-down
+bind browser,pager              \Ce next-line
+bind browser,pager              \Cy previous-line
+bind index                      \Ce next-line
+bind index                      \Cy previous-line
+
+bind pager,index                dd  delete-message
+
+# Mail & Reply
+bind pager,index                gr  group-reply
+#bind index                      \Cm list-reply # Doesn't work currently
+
+# Threads
+bind browser,pager,index        N   search-opposite
+bind pager,index                dT  delete-thread
+bind pager,index                dt  delete-subthread
+bind pager,index                gt  next-thread
+bind pager,index                gT  previous-thread
+bind index                      za  collapse-thread
+bind index                      zA  collapse-all # Missing :folddisable/foldenable
+
+# Refreshing
+bind index                      \Cl imap-fetch-mail
+
