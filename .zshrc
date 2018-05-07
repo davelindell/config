@@ -1,0 +1,1 @@
+/home/lindell/.zprezto/runcoms/zshrc
