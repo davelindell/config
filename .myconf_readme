@@ -1,0 +1,28 @@
+#.myconf
+
+## Setup
+```bash
+git init --bare $HOME/.myconf
+.myconf remote add origin git@github.com:davelindell.config.git
+```
+
+## Configuration
+```bash
+alias config='git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
+config config status.showUntrackedFiles no
+```
+
+## Usage
+```bash
+config status
+config add .gitconfig
+config commit -m 'Add gitconfig'
+config push
+```
+
+## Replication
+```bash
+git clone --separate-git-dir=$HOME/.myconf https://github.com/davelindell/myconf.git myconf-tmp
+rsync --recursive --verbose --exclude '.git' myconf-tmp/ $HOME/
+rm --recursive.myconf-tmp
+```
