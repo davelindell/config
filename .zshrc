@@ -18,6 +18,9 @@ alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
 bindkey -v
 bindkey '^R' history-incremental-search-backward
 
+bindkey "${terminfo[khome]}" beginning-of-line
+bindkey "${terminfo[kend]}" end-of-line
+
 alias vim='vim --servername vim'
 alias ll='ls -l --color=auto'
 alias ls='ls --color=auto'
