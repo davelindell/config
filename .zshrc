@@ -17,6 +17,7 @@ alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
 
 bindkey -v
 bindkey '^R' history-incremental-search-backward
+bindkey -s jk '\e'
 
 bindkey "${terminfo[khome]}" beginning-of-line
 bindkey "${terminfo[kend]}" end-of-line
