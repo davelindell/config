@@ -8,4 +8,7 @@ fi
 #exec dbus-launch --exit-with-session gnome-session
 
 /home/lindell/.screenlayout/arch.sh
+
+feh --bg-scale /home/lindell/Downloads/wallpaper.jpg
+
 i3

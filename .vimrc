@@ -185,6 +185,9 @@ nnoremap <space> za
 ":map <F5> :prev<CR>
 ":map <F4> :e<CR>
 ":map <F8> :n<CR>G
+"
+
+set hidden
 
 "Always show current position
 set ruler

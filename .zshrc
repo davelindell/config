@@ -11,7 +11,7 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
-unalias rm
+#unalias rm
 alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
 #config config status.showUntrackedFiles no
 
@@ -48,3 +48,4 @@ if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
   exec startx
 fi
 
+/home/lindell/.config/wpg/wp_init.sh > /dev/null
