@@ -10,5 +10,6 @@ fi
 /home/lindell/.screenlayout/arch.sh
 
 feh --bg-scale /home/lindell/Downloads/wallpaper.jpg
+xrdb ~/.Xresources
 
 i3

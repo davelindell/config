@@ -39,7 +39,8 @@ bindsym PowerOff exec --no-startup-id systemctl poweroff -i, mode "default"
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal 
+#bindsym $mod+Return exec i3-sensible-terminal 
+bindsym $mod+Return exec xterm -e "cd `xcwd` && $SHELL"
 
 # kill focused window
 bindsym $mod+Shift+q kill
