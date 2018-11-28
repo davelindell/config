@@ -3,6 +3,7 @@
 xterm*faceName: DejaVu Sans Mono for Powerline
 xterm*faceSize: 12
 xterm*Xcursor.size: 16 
+Xcursor.size: 32
 !xterm*renderFont: true
 !xterm*Background: black
 !xterm*Foreground: green
