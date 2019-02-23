@@ -12,4 +12,6 @@ fi
 feh --bg-scale /home/lindell/Downloads/wallpaper.jpg
 xrdb ~/.Xresources
 
+[[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
+
 i3
