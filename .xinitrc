@@ -1,17 +1,58 @@
 #!/bin/sh
+export $(dbus-launch)
+userresources=$HOME/.Xresources
+usermodmap=$HOME/.Xmodmap
+sysresources=/etc/X11/xinit/.Xresources
+sysmodmap=/etc/X11/xinit/.Xmodmap
 
-systemctl --user import-environment DISPLAY XAUTHORITY
+# merge in defaults and keymaps
 
-if which dbus-update-activation-environment >/dev/null 2>&1; then
-        dbus-update-activation-environment DISPLAY XAUTHORITY
+if [ -f $sysresources ]; then
+
+
+
+
+
+
+
+    xrdb -merge $sysresources
+
 fi
-#exec dbus-launch --exit-with-session gnome-session
 
-/home/lindell/.screenlayout/arch.sh
+if [ -f $sysmodmap ]; then
+    xmodmap $sysmodmap
+fi
 
-feh --bg-scale /home/lindell/Downloads/wallpaper.jpg
+if [ -f "$userresources" ]; then
+
+
+
+
+
+
+
+    xrdb -merge "$userresources"
+
+fi
+
+if [ -f "$usermodmap" ]; then
+    xmodmap "$usermodmap"
+fi
+
+# start some nice programs
+
+if [ -d /etc/X11/xinit/xinitrc.d ] ; then
+ for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
+  [ -x "$f" ] && . "$f"
+ done
+ unset f
+fi
+
+xinput --set-prop 'SynPS/2 Synaptics TouchPad' 'libinput Accel Speed' 1.0
+feh --bg-scale /home/lindell/.config/wpg/wallpapers/wallpaper.jpg
 xrdb ~/.Xresources
-
 [[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
 
+xset -b
+xbindkeys
 i3

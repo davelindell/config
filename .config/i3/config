@@ -170,6 +170,10 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 bindsym XF86TouchpadToggle exec touchpad_toggle.sh
+bindsym XF86MonBrightnessUp exec brightnessControl.sh up
+bindsym XF86MonBrightnessDown exec brightnessControl.sh down
+#bindcode 122 exec volumeControl.sh down
+#bindsym XF86AudioLowerVolume exec volumeControl.sh down
 
 # spotify shortcuts
 bindsym $mod+greater exec "sp next"

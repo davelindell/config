@@ -1,2 +1,2 @@
 #!/bin/sh
-feh --bg-fill '/home/lindell/.config/wpg/wallpapers/spaceship.jpg' 
+feh --no-fehbg --bg-fill '/home/lindell/.config/wpg/wallpapers/wallpaper.jpg' 
