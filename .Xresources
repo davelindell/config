@@ -7,7 +7,7 @@ Xcursor.size: 32
 !xterm*renderFont: true
 !xterm*Background: black
 !xterm*Foreground: green
-Xft.dpi: 128
+Xft.dpi: 150 
 Xft.autohint: 0
 Xft.lcdfilter:  lcddefault
 Xft.hintstyle:  hintfull

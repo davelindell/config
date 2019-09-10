@@ -1,2 +1,6 @@
 #!/bin/sh
 [[ -f ~/.zshrc ]] && source ~/.zshrc
+optimus-manager-qt&
+xhost +local:0
+xinput --set-prop 'SynPS/2 Synaptics TouchPad' 'libinput Accel Speed' 1.0
+xinput --set-prop 'SynPS/2 Synaptics TouchPad' 'libinput Tapping Enabled' 1

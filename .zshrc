@@ -37,7 +37,9 @@ export PATH=~/.npm-global/bin:$PATH
 export TERM="xterm-256color"
 export VISUAL="vim"
 export EDITOR=vim
-export PATH=$PATH:/opt/anaconda/bin
+#export PATH=$PATH:/opt/anaconda/bin
+
+[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
 
 #xmodmap -e "clear lock" #disable caps lock switch
 #xmodmap -e "keysym Caps_Lock = Escape" #set caps_lock as escape
@@ -45,7 +47,8 @@ export PATH=$PATH:/opt/anaconda/bin
 #[ -n "$XTERM_VERSION" ] && transset-df --id "$WINDOWID" >/dev/null
 
 if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-  exec startx
+    # exec startx
 fi
 
 /home/lindell/.config/wpg/wp_init.sh > /dev/null
+
