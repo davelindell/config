@@ -22,6 +22,8 @@ Plugin 'lervag/vimtex'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+set re=1
+
 " indent guides
 let g:indent_guides_guide_size = 1
 let g:indent_guides_color_change_percent = 3
@@ -59,10 +61,10 @@ let g:ycm_semantic_triggers.tex = [
     \ ]
 
 " powerline
-set rtp+=/usr/lib/python2.7/site-packages/powerline/bindings/vim/
+set rtp+=/usr/lib/python3.7/site-packages/powerline/bindings/vim/
 set laststatus=2
 let g:Powerline_symbols = 'fancy'
-set noshowmode
+"set noshowmode
 set termencoding=utf-8
 set encoding=utf-8
 
@@ -135,7 +137,7 @@ let g:UltiSnipsListSnips="<c-h>"
 let g:UltiSnipsEditSplit="vertical"
 
 " vim-gitgutter
-set updatetime=250
+"set updatetime=250
 
 " vim-colors-solarized
 syntax enable
@@ -144,9 +146,9 @@ set background=dark
 colorscheme molokai
 
 " syntastic settings
-let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_matlab_checkers = ['mlint']
 let g:syntastic_loc_list_height=5

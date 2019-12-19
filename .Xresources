@@ -4,9 +4,11 @@ xterm*faceName: DejaVu Sans Mono for Powerline
 xterm*faceSize: 12
 xterm*Xcursor.size: 16 
 Xcursor.size: 32
+
 !xterm*renderFont: true
 !xterm*Background: black
 !xterm*Foreground: green
+
 Xft.dpi: 150 
 Xft.autohint: 0
 Xft.lcdfilter:  lcddefault
@@ -36,6 +38,7 @@ xterm*color12:     rgb:41/86/be
 xterm*color13:     rgb:cf/9e/be
 xterm*color14:     rgb:71/be/be
 xterm*color15:    rgb:ff/ff/ff
+
 !
 !Theme Thirteen
 !*background: rgb:00/00/00
