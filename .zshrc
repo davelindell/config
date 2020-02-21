@@ -38,6 +38,9 @@ export TERM="xterm-256color"
 export VISUAL="vim"
 export EDITOR=vim
 #export PATH=$PATH:/opt/anaconda/bin
+#
+export PROMPT_COMMAND="pwd >! /tmp/whereami"
+precmd() { eval "$PROMPT_COMMAND" }
 
 [ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
 
