@@ -12,7 +12,6 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'Valloric/YouCompleteMe'
@@ -35,30 +34,6 @@ set spelllang=en
 
 " Use 256 colours (Use this setting only if your terminal supports 256 colours)
 set t_Co=256
-
-" vimtex
-let g:vimtex_enabled = 1
-let g:vimtex_view_general_viewer = 'zathura'
-let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
-let g:vimtex_view_general_options_latexmk = '--unique'
-let g:vimtex_complete_close_braces = 1
-"let g:vimtex_compiler_latexmk = {'callback' : 0}
-if !exists('g:ycm_semantic_triggers')
-let g:ycm_semantic_triggers = {}
-endif
-let g:ycm_semantic_triggers.tex = [
-    \ 're!\\[A-Za-z]*cite[A-Za-z]*(\[[^]]*\]){0,2}{[^}]*',
-    \ 're!\\[A-Za-z]*ref({[^}]*|range{([^,{}]*(}{)?))',
-    \ 're!\\hyperref\[[^]]*',
-    \ 're!\\includegraphics\*?(\[[^]]*\]){0,2}{[^}]*',
-    \ 're!\\(include(only)?|input){[^}]*',
-    \ 're!\\\a*(gls|Gls|GLS)(pl)?\a*(\s*\[[^]]*\]){0,2}\s*\{[^}]*',
-    \ 're!\\includepdf(\s*\[[^]]*\])?\s*\{[^}]*',
-    \ 're!\\includestandalone(\s*\[[^]]*\])?\s*\{[^}]*',
-    \ 're!\\usepackage(\s*\[[^]]*\])?\s*\{[^}]*',
-    \ 're!\\documentclass(\s*\[[^]]*\])?\s*\{[^}]*',
-    \ 're!\\[A-Za-z]*',
-    \ ]
 
 " powerline
 set rtp+=/usr/lib/python3.7/site-packages/powerline/bindings/vim/
@@ -124,7 +99,7 @@ function! s:unite_settings()
   imap <silent><buffer><expr> <C-v> unite#do_action('vsplitswitch')
   "map <buffer> <C-p> <Plug>(unite_toggle_auto_preview)
   "noremap <C-p> :Unite file-rec/async<cr>
-  nnoremap <ESC> :UniteClose<cr>
+  " nnoremap <ESC> :UniteClose<cr>
 endfunction
 
 " ultisnips and snippets
@@ -146,7 +121,7 @@ set background=dark
 colorscheme molokai
 
 " syntastic settings
-let g:syntastic_quiet_messages = { 'regex': 'E501' }
+let g:syntastic_quiet_messages = { 'regex': 'E501\|402' }
 let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
@@ -159,6 +134,38 @@ nnoremap <silent> <C-u> :SyntasticToggleMode <CR>
 "let mapleader = ","
 let maplocalleader = "\\"
 let mapleader = '\'
+
+" vimtex
+let g:vimtex_enabled = 1
+let g:vimtex_view_general_viewer = 'zathura'
+" let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
+" let g:vimtex_view_general_options_latexmk = '--unique'
+" let g:vimtex_compiler_method = 'arara'
+let g:vimtex_complete_close_braces = 1
+"augroup filetype_tex
+"    autocmd!
+"    autocmd BufWritePost *.tex normal \ll
+"augroup END
+
+"let g:vimtex_compiler_latexmk = {'callback' : 0}
+if !exists('g:ycm_semantic_triggers')
+let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers.tex = [
+    \ 're!\\[A-Za-z]*cite[A-Za-z]*(\[[^]]*\]){0,2}{[^}]*',
+    \ 're!\\[A-Za-z]*ref({[^}]*|range{([^,{}]*(}{)?))',
+    \ 're!\\hyperref\[[^]]*',
+    \ 're!\\includegraphics\*?(\[[^]]*\]){0,2}{[^}]*',
+    \ 're!\\(include(only)?|input){[^}]*',
+    \ 're!\\\a*(gls|Gls|GLS)(pl)?\a*(\s*\[[^]]*\]){0,2}\s*\{[^}]*',
+    \ 're!\\includepdf(\s*\[[^]]*\])?\s*\{[^}]*',
+    \ 're!\\includestandalone(\s*\[[^]]*\])?\s*\{[^}]*',
+    \ 're!\\usepackage(\s*\[[^]]*\])?\s*\{[^}]*',
+    \ 're!\\documentclass(\s*\[[^]]*\])?\s*\{[^}]*',
+    \ 're!\\[A-Za-z]*',
+    \ ]
+
+
 
 "window settings
 set winheight=30

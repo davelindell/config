@@ -30,14 +30,18 @@ alias grep='grep --color=auto'
 alias diff='diff --color=auto'
 alias i3lock='i3lock -c 000000'
 alias sys-sleep='i3lock && systemctl suspend'
+alias matlab="MESA_LOADER_DRIVER_OVERRIDE=i965 matlab"
+alias pycharm="GDK_SCALE=1 pycharm"
 
 export TERMINAL="/usr/bin/xterm"
-export PATH=/home/lindell/.local/bin:$PATH
+export PATH=/home/lindell/.local/bin:/home/lindell/.gem/ruby/2.7.0/bin:$PATH
 export PATH=~/.npm-global/bin:$PATH
 export TERM="xterm-256color"
 export VISUAL="vim"
 export EDITOR=vim
 #export PATH=$PATH:/opt/anaconda/bin
+#
+#export GDK_SCALE=2.0
 #
 export PROMPT_COMMAND="pwd >! /tmp/whereami"
 precmd() { eval "$PROMPT_COMMAND" }
